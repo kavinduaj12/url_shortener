@@ -24,3 +24,7 @@ def home(request):
         'data':data
     }
     return render(request, 'core/home.html', context)
+
+def urlRedirect(request, slugs):
+    data = UrlData.objects.get(slug=slugs)
+    return redirect(data.url)
