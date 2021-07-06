@@ -7,6 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-    Home Page
+    <form action="{% url 'home' %}" method="POST">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Submit">
+    </form>
+    {% for url_data in data %}
+        URL=> {{url_data.url}}<br>
+        Short Url=> {{url_data.slug}}
+    {% endfor %}
 </body>
 </html>
