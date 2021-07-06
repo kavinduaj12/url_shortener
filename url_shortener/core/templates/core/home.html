@@ -15,6 +15,7 @@
     {% for url_data in data %}
         URL=> {{url_data.url}}<br>
         Short Url=> http://127.0.0.1:8000/u/{{url_data.slug}}
+        <a href="{% url 'delete' url_data.id %}">delete</a><br><br>
     {% endfor %}
 </body>
 </html>

@@ -25,6 +25,11 @@ def home(request):
     }
     return render(request, 'core/home.html', context)
 
+def delete(request,id):
+    data=UrlData.objects.get(id=id)
+    data.delete()
+    return redirect('home')
+
 def urlRedirect(request, slugs):
-    data = UrlData.objects.get(slug=slugs)
+    data=UrlData.objects.get(slug=slugs)
     return redirect(data.url)
