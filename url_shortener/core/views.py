@@ -29,7 +29,12 @@ def home(request):
     else:
         public_user=User.objects.get(username='public')
         data=UrlData.objects.filter(user=public_user)
-    context={'form':form,'data':data}
+    context={
+        'form':form,
+        'data':data,
+        'home_active':'active',
+        'home_disabled':'disabled'
+        }
     return render(request, 'core/home.html', context)
 
 def delete(request,id):
@@ -79,4 +84,9 @@ def user_signup(request):
             return redirect('home')
     else:
         form=SignUpForm()
-    return render(request,'core/signup.html',{'form':form})
+    context={
+        'form':form,
+        'signup_active':'active',
+        'signup_disabled':'disabled'
+    }
+    return render(request,'core/signup.html',context)
