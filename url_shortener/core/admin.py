@@ -5,4 +5,4 @@ from .models import UrlData
 
 @admin.register(UrlData)
 class UrlDataAdmin(admin.ModelAdmin):
-    list_display=['id','url','slug']
+    list_display=['id','user','url','slug']
