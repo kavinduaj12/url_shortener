@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth import authenticate,login
 from django.contrib.auth.models import User
+from django.contrib import messages
+from .form import UrlForm,LoginForm
 from .models import UrlData
-from .form import UrlForm
 import random
 import string
 
@@ -38,3 +40,26 @@ def delete(request,id):
 def urlRedirect(request,slugs):
     data=UrlData.objects.get(slug=slugs)
     return redirect(data.url)
+
+def user_login(request):
+    if not request.user.is_authenticated:
+        if request.method=='POST':
+            form=LoginForm(request=request,data=request.POST)
+            if form.is_valid():
+                uname=form.cleaned_data['username']
+                upass=form.cleaned_data['password']
+                user=authenticate(username=uname,password=upass)
+                if user is not None:
+                    login(request,user)
+                messages.success(request,'Logged In Successfully !!')
+                return redirect('home')
+        else:
+            form=LoginForm()
+        context={
+            'form':form,
+            'login_active':'active',
+            'login_disabled':'disabled'
+            }
+        return render(request,'core/login.html',context)
+    else:
+        return redirect('home')
