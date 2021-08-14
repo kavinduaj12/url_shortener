@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .form import UrlForm,LoginForm
+from .form import UrlForm,LoginForm,SignUpForm
 from .models import UrlData
 import random
 import string
@@ -68,3 +68,15 @@ def user_logout(request):
 	logout(request)
 	messages.warning(request,'You are successfully logged out !!')
 	return redirect('home')
+
+def user_signup(request):
+    if request.method=='POST':
+        form=SignUpForm(request.POST)
+        if form.is_valid():
+            messages.success(request,'Signed up successfully !!')
+            user=form.save()
+            login(request,user)
+            return redirect('home')
+    else:
+        form=SignUpForm()
+    return render(request,'core/signup.html',{'form':form})

@@ -37,7 +37,7 @@
                             <th class="active">{{forloop.counter}}</th>
                             <td class="active"><a href="{{url_data.url}}" target="_blank">{{url_data.url}}</a></td>
                             <td class="active"><a href="http://127.0.0.1:8000/u/{{url_data.slug}}" target="_blank">http://127.0.0.1:8000/u/{{url_data.slug}}</a></td>
-                            <td><a href="{% url 'delete' url_data.id %}" class="btn btn-sm btn-danger text-nowrap">Delete</a></td>
+                            <td><a href="{% url 'delete' url_data.id %}" class="btn btn-sm btn-secondary text-nowrap">Delete</a></td>
                         </tr>
                     {% endfor %}
                 </table>
@@ -47,6 +47,7 @@
                 </div>
             {% endif %}
         </div>
+        <div class="my-5 py-2"></div>
     </div>
 </div>
 {% endblock content %}
