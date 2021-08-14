@@ -2,7 +2,17 @@
 {% block content %}
 <div class="container pb-4">
     <div class="row justify-content-center p-md-5">
-        <h1 class="text-center alert alert-warning my-5">Enter your URL and get short URL</h1>
+        <div class="container-fluid">
+            {% if messages %}
+            {% for message in messages %}
+            <div {% if message.tags %} class="alert alert-{{message.tags}} alert-dismissible fade show" {% endif %} role="alert">
+                <strong>{{message}}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <h1 class="text-center alert alert-danger my-5">Enter your URL and get short URL</h1>
         <form action="{% url 'home' %}" class="pt-4" method="POST">
             {% csrf_token %}
             <div class="input-group">

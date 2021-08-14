@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .form import UrlForm,LoginForm
@@ -51,7 +51,7 @@ def user_login(request):
                 user=authenticate(username=uname,password=upass)
                 if user is not None:
                     login(request,user)
-                messages.success(request,'Logged In Successfully !!')
+                messages.success(request,f'Hi {uname} you are successfully logged in !!')
                 return redirect('home')
         else:
             form=LoginForm()
@@ -63,3 +63,8 @@ def user_login(request):
         return render(request,'core/login.html',context)
     else:
         return redirect('home')
+
+def user_logout(request):
+	logout(request)
+	messages.warning(request,'You are successfully logged out !!')
+	return redirect('home')

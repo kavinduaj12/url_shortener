@@ -23,4 +23,5 @@ urlpatterns = [
     path('delete/<int:id>', views.delete,name='delete'),
     path("u/<str:slugs>", views.urlRedirect, name="redirect"),
     path('login/', views.user_login, name='login'),
+    path('logout/', views.user_logout, name='logout'),
 ]
