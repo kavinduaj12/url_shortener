@@ -1,4 +1,4 @@
-# url_shortener(http://prm.pythonanywhere.com)
+# [URL Shortener](http://prm.pythonanywhere.com)
 This is a Django based tool for shortening the long URLs.
 
 ## Steps to execute -
